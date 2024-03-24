@@ -26,6 +26,7 @@ object Versions {
 
     object Etc {
         const val glide = "4.16.0"
+        const val glideCompose = "1.0.0-beta01"
         const val okhttp3 = "4.10.0"
         const val retrofit2 = "2.9.0"
     }

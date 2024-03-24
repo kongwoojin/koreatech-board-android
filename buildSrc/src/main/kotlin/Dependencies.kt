@@ -26,6 +26,7 @@ object Dependencies {
         const val glide = "com.github.bumptech.glide:glide:${Versions.Etc.glide}"
         const val glideAnnotation = "com.github.bumptech.glide:annotations:${Versions.Etc.glide}"
         const val glideOkhttp3 = "com.github.bumptech.glide:okhttp3-integration:${Versions.Etc.glide}"
+        const val glideCompose = "com.github.bumptech.glide:compose:${Versions.Etc.glideCompose}"
         const val okhttp3 = "com.squareup.okhttp3:okhttp:${Versions.Etc.okhttp3}"
         const val okhttp3Logging = "com.squareup.okhttp3:logging-interceptor:${Versions.Etc.okhttp3}"
         const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.Etc.retrofit2}"
