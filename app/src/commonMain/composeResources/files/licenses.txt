@@ -824,3 +824,7 @@ https://developer.android.com/jetpack/androidx/releases/webkit#1.11.0
 WindowManager (1.2.0) - The Apache Software License, Version 2.0
 WindowManager Jetpack library. Currently only provides additional functionality on foldable devices.
 https://developer.android.com/jetpack/androidx/releases/window#1.2.0
+
+zoomable (1.6.1) - The Apache Software License, Version 2.0
+An android library for Jetpack Compose that enables contents zoomable.
+https://github.com/usuiat/Zoomable

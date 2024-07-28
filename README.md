@@ -18,6 +18,7 @@
 * [Orbit-MVI](https://orbit-mvi.org/)
 * [SqlDelight](https://cashapp.github.io/sqldelight/)
 * [UUID](https://github.com/benasher44/uuid)
+* [Zoomable](https://github.com/usuiat/Zoomable)
 
 ## 지원하는 플랫폼
 * Android

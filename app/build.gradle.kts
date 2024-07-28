@@ -96,6 +96,7 @@ kotlin {
             implementation(libs.paging.common)
             implementation(libs.paging.compose.common)
             implementation(libs.sqldelight.coroutines.extensions)
+            implementation(libs.zoomable)
         }
 
         desktopMain.dependencies {
