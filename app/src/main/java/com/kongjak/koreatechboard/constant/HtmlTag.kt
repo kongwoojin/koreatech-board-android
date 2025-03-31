@@ -1,4 +1,4 @@
-package com.kongjak.koreatechboard.constraint
+package com.kongjak.koreatechboard.constant
 
 const val HTML_BR = "br"
 const val HTML_P = "p"

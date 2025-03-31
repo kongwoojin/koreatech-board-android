@@ -6,9 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
-import com.kongjak.koreatechboard.constraint.REGEX_EMAIL
-import com.kongjak.koreatechboard.constraint.REGEX_HTTP_HTTPS
-import com.kongjak.koreatechboard.constraint.REGEX_PHONE_NUMBER
+import com.kongjak.koreatechboard.constant.REGEX_EMAIL
+import com.kongjak.koreatechboard.constant.REGEX_HTTP_HTTPS
+import com.kongjak.koreatechboard.constant.REGEX_PHONE_NUMBER
 import com.kongjak.koreatechboard.ui.theme.koreatechColorPalette
 
 @Composable

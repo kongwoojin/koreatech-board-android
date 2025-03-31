@@ -1,4 +1,4 @@
-package com.kongjak.koreatechboard.constraint
+package com.kongjak.koreatechboard.constant
 
 const val REGEX_BASE_URL = "^.+?[^\\/:](?=[?\\/]|\$)"
 const val REGEX_HTTP_HTTPS = "(https?://\\S+)"

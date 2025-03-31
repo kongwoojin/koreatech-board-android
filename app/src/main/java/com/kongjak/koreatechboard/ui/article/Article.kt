@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
-import com.kongjak.koreatechboard.constraint.REGEX_BASE_URL
+import com.kongjak.koreatechboard.constant.REGEX_BASE_URL
 import com.kongjak.koreatechboard.domain.model.Article
 import com.kongjak.koreatechboard.ui.components.HtmlView
 import com.kongjak.koreatechboard.ui.components.WebView
