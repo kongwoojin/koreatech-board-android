@@ -14,13 +14,13 @@ interface API {
         @Path("site") site: String,
         @Path("board") board: String,
         @Query("page") page: Int
-    ): Response<BoardResponse>
+    ): BoardResponse
 
     @GET(APIConstraints.V3.BOARD_WIDGET)
     suspend fun getBoardMinimum(
         @Path("site") site: String,
         @Path("board") board: String
-    ): Response<BoardResponse>
+    ): BoardResponse
 
     @GET(APIConstraints.V3.SEARCH_WITH_TITLE)
     suspend fun searchBoardWithTitle(
@@ -28,10 +28,10 @@ interface API {
         @Path("board") board: String,
         @Query("title") title: String,
         @Query("page") page: Int = 1
-    ): Response<BoardResponse>
+    ): BoardResponse
 
     @GET(APIConstraints.V3.ARTICLE)
     suspend fun getArticle(
         @Query("uuid") uuid: UUID
-    ): Response<ArticleResponse>
+    ): ArticleResponse
 }

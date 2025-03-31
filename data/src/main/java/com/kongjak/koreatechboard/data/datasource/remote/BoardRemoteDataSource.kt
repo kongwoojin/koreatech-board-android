@@ -6,7 +6,11 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class BoardRemoteDataSource @Inject constructor(private val api: API) {
-    suspend fun getBoardMinimum(department: String, board: String): Response<BoardResponse> {
-        return api.getBoardMinimum(department, board)
+    suspend fun getBoardMinimum(department: String, board: String): BoardResponse {
+        return try {
+            api.getBoardMinimum(department, board)
+        } catch (e: Exception) {
+            throw e
+        }
     }
 }

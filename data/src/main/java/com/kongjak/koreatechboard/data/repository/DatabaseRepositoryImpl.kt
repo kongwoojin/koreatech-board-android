@@ -38,7 +38,7 @@ class DatabaseRepositoryImpl @Inject constructor(
             if (retryCount > 3) throw IOException("Failed to get article from API server.")
             try {
                 val response = articleRemoteDataSource.getArticle(uuid)
-                response.body()?.mapToArticle(department, board)?.let {
+                response.mapToArticle(department, board).let {
                     databaseLocalDataSource.insertArticle(it)
                 }
             } catch (e: IOException) {

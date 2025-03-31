@@ -3,7 +3,6 @@ package com.kongjak.koreatechboard.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kongjak.koreatechboard.R
-import com.kongjak.koreatechboard.domain.base.ResponseResult
 import com.kongjak.koreatechboard.domain.usecase.api.GetBoardMinimumUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -58,55 +57,28 @@ class HomeBoardViewModel @Inject constructor(private val getBoardMinimumUseCase:
                     }
 
                     runCatching {
-                        getBoardMinimumUseCase(sideEffect.department, sideEffect.board)
+                        getBoardMinimumUseCase(sideEffect.department, sideEffect.board).getOrNull()
                     }.onSuccess {
-                        when (it) {
-                            is ResponseResult.Success -> {
-                                intent {
-                                    reduce {
-                                        state.copy(
-                                            boardData = state.boardData + (
-                                                sideEffect.board to (
+                        intent {
+                            reduce {
+                                state.copy(
+                                    boardData = state.boardData + (
+                                            sideEffect.board to (
                                                     state.boardData[sideEffect.board]?.copy(
                                                         isSuccess = true,
-                                                        boardData = it.data.boardData
-                                                            ?: emptyList(),
-                                                        statusCode = it.data.statusCode,
+                                                        boardData = it?.boardData ?: emptyList(),
+                                                        statusCode = it?.statusCode ?: 200,
                                                         isLoaded = true
                                                     ) ?: HomeBoardState.HomeBoardData(
                                                         isSuccess = true,
-                                                        boardData = it.data.boardData
+                                                        boardData = it?.boardData
                                                             ?: emptyList(),
-                                                        statusCode = it.data.statusCode,
+                                                        statusCode = it?.statusCode ?: 200,
                                                         isLoaded = true
                                                     )
                                                     )
-                                                )
-                                        )
-                                    }
-                                }
-                            }
-
-                            is ResponseResult.Error -> {
-                                intent {
-                                    reduce {
-                                        state.copy(
-                                            boardData = state.boardData + (
-                                                sideEffect.board to (
-                                                    state.boardData[sideEffect.board]?.copy(
-                                                        isSuccess = false,
-                                                        statusCode = it.errorType.statusCode,
-                                                        error = it.errorType.statusCode.toString()
-                                                    ) ?: HomeBoardState.HomeBoardData(
-                                                        isSuccess = false,
-                                                        statusCode = it.errorType.statusCode,
-                                                        error = it.errorType.statusCode.toString()
-                                                    )
-                                                    )
-                                                )
-                                        )
-                                    }
-                                }
+                                            )
+                                )
                             }
                         }
                     }.onFailure {

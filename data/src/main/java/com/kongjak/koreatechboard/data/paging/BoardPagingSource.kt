@@ -11,18 +11,12 @@ class BoardPagingSource(private val api: API, private val site: String, private 
             val page = params.key ?: 1
             val pageSize = params.loadSize
 
-            val responseRaw = api.getBoard(site, board, page)
-
-            if (responseRaw.code() != 200) {
-                throw Exception("${responseRaw.code()}")
-            }
-
-            val response = responseRaw.body()?.boardData
+            val response = api.getBoard(site, board, page)
 
             return LoadResult.Page(
-                data = response ?: emptyList(),
+                data = response.boardData ?: emptyList(),
                 prevKey = if (page <= 1) null else page - 1,
-                nextKey = if (page >= responseRaw.body()!!.lastPage) null else page + 1
+                nextKey = if (page >= response.lastPage) null else page + 1
             )
         } catch (e: Exception) {
             return LoadResult.Error(e)

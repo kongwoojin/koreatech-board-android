@@ -3,7 +3,6 @@ package com.kongjak.koreatechboard.ui.article
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kongjak.koreatechboard.R
-import com.kongjak.koreatechboard.domain.base.ResponseResult
 import com.kongjak.koreatechboard.domain.usecase.api.GetArticleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -42,34 +41,16 @@ class ArticleViewModel @Inject constructor(
                         }
                     }
                     runCatching {
-                        getArticleUseCase(sideEffect.uuid)
+                        getArticleUseCase(sideEffect.uuid).getOrNull()
                     }.onSuccess {
-                        when (it) {
-                            is ResponseResult.Success -> {
-                                intent {
-                                    reduce {
-                                        state.copy(
-                                            isSuccess = true,
-                                            article = it.data,
-                                            isLoading = false,
-                                            isLoaded = true,
-                                            url = it.data.articleUrl
-                                        )
-                                    }
-                                }
-                            }
-
-                            is ResponseResult.Error -> {
-                                intent {
-                                    reduce {
-                                        state.copy(
-                                            isSuccess = false,
-                                            isLoading = false,
-                                            statusCode = it.errorType.statusCode,
-                                            error = it.errorType.statusCode.toString()
-                                        )
-                                    }
-                                }
+                        intent {
+                            reduce {
+                                state.copy(
+                                    isSuccess = true,
+                                    isLoading = false,
+                                    article = it,
+                                    isLoaded = true
+                                )
                             }
                         }
                     }.onFailure {

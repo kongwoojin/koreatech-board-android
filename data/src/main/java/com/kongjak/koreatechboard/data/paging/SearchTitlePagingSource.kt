@@ -11,18 +11,12 @@ class SearchTitlePagingSource(private val api: API, private val site: String, pr
             val page = params.key ?: 1
             val pageSize = params.loadSize
 
-            val responseRaw = api.searchBoardWithTitle(site, board, title, page)
-
-            if (responseRaw.code() != 200) {
-                throw Exception("${responseRaw.code()}")
-            }
-
-            val response = responseRaw.body()?.boardData
+            val response = api.searchBoardWithTitle(site, board, title, page)
 
             return LoadResult.Page(
-                data = response!!,
+                data = response.boardData ?: emptyList(),
                 prevKey = if (page <= 1) null else page - 1,
-                nextKey = if (page >= responseRaw.body()!!.lastPage) null else page + 1
+                nextKey = if (page >= response.lastPage) null else page + 1
             )
         } catch (e: Exception) {
             return LoadResult.Error(e)
