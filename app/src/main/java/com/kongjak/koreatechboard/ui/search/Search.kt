@@ -2,8 +2,12 @@ package com.kongjak.koreatechboard.ui.search
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.CircularProgressIndicator
@@ -78,6 +82,10 @@ fun SearchScreen(
                     color = Color.Gray
                 )
             }
+        }
+
+        item {
+            Spacer(modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars))
         }
 
         lazyPostList.apply {
