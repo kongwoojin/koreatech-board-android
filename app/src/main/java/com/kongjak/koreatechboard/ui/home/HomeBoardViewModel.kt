@@ -63,21 +63,21 @@ class HomeBoardViewModel @Inject constructor(private val getBoardMinimumUseCase:
                             reduce {
                                 state.copy(
                                     boardData = state.boardData + (
-                                            sideEffect.board to (
-                                                    state.boardData[sideEffect.board]?.copy(
-                                                        isSuccess = true,
-                                                        boardData = it?.boardData ?: emptyList(),
-                                                        statusCode = it?.statusCode ?: 200,
-                                                        isLoaded = true
-                                                    ) ?: HomeBoardState.HomeBoardData(
-                                                        isSuccess = true,
-                                                        boardData = it?.boardData
-                                                            ?: emptyList(),
-                                                        statusCode = it?.statusCode ?: 200,
-                                                        isLoaded = true
-                                                    )
-                                                    )
+                                        sideEffect.board to (
+                                            state.boardData[sideEffect.board]?.copy(
+                                                isSuccess = true,
+                                                boardData = it?.boardData ?: emptyList(),
+                                                statusCode = it?.statusCode ?: 200,
+                                                isLoaded = true
+                                            ) ?: HomeBoardState.HomeBoardData(
+                                                isSuccess = true,
+                                                boardData = it?.boardData
+                                                    ?: emptyList(),
+                                                statusCode = it?.statusCode ?: 200,
+                                                isLoaded = true
                                             )
+                                            )
+                                        )
                                 )
                             }
                         }
