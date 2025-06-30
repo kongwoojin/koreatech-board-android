@@ -1,6 +1,6 @@
 package com.kongjak.koreatechboard.data.api
 
-object APIConstraints {
+object APIConstants {
     object V3 {
         const val BOARD = "{site}/{board}"
         const val BOARD_WIDGET = "{site}/{board}/widget"

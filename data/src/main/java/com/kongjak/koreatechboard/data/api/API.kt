@@ -8,20 +8,20 @@ import retrofit2.http.Query
 import java.util.UUID
 
 interface API {
-    @GET(APIConstraints.V3.BOARD)
+    @GET(APIConstants.V3.BOARD)
     suspend fun getBoard(
         @Path("site") site: String,
         @Path("board") board: String,
         @Query("page") page: Int
     ): BoardResponse
 
-    @GET(APIConstraints.V3.BOARD_WIDGET)
+    @GET(APIConstants.V3.BOARD_WIDGET)
     suspend fun getBoardMinimum(
         @Path("site") site: String,
         @Path("board") board: String
     ): BoardResponse
 
-    @GET(APIConstraints.V3.SEARCH_WITH_TITLE)
+    @GET(APIConstants.V3.SEARCH_WITH_TITLE)
     suspend fun searchBoardWithTitle(
         @Path("site") site: String,
         @Path("board") board: String,
@@ -29,7 +29,7 @@ interface API {
         @Query("page") page: Int = 1
     ): BoardResponse
 
-    @GET(APIConstraints.V3.ARTICLE)
+    @GET(APIConstants.V3.ARTICLE)
     suspend fun getArticle(
         @Query("uuid") uuid: UUID
     ): ArticleResponse
