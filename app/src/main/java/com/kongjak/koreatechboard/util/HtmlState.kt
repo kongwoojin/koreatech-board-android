@@ -1,6 +1,7 @@
 package com.kongjak.koreatechboard.util
 
 import android.util.Log
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
@@ -87,7 +88,7 @@ fun rememberHtmlState(
     baseUrl: String,
     html: String,
     parser: MiniXmlPullParser = MiniXmlPullParser(source = html.iterator(), relaxed = true),
-    isDarkTheme: Boolean = false
+    isDarkTheme: Boolean = isSystemInDarkTheme()
 ): HtmlState {
     val customHtmlViewPosition: MutableList<Int> = mutableListOf(0)
     val customHtmlViewQueue = ArrayDeque<CustomHtmlView>()
