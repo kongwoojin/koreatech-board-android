@@ -3,7 +3,11 @@ package com.kongjak.koreatechboard.ui.components
 import android.content.Intent
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
@@ -18,6 +22,15 @@ fun HtmlView(
     image: @Composable (String, String) -> Unit,
     webView: @Composable (String) -> Unit
 ) {
+    if (htmlState.loadingState is HtmlState.LoadingState.Loading) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
+        }
+        return
+    }
     var pos = 0
     while (htmlState.customHtmlViewQueue.isNotEmpty()) {
         HtmlText(

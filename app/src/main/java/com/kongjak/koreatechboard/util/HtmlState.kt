@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.produceState
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -58,16 +60,24 @@ import com.kongjak.koreatechboard.ui.components.ANNOTATION_PHONE_NUMBER_PREFIX
 import com.kongjak.koreatechboard.ui.components.ANNOTATION_URL_PREFIX
 import com.kongjak.koreatechboard.ui.components.appendNewLine
 import com.kongjak.koreatechboard.ui.theme.koreatechColorPalette
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.kobjects.ktxml.api.EventType
 import org.kobjects.ktxml.api.XmlPullParserException
 import org.kobjects.ktxml.mini.MiniXmlPullParser
 import kotlin.random.Random
 
 class HtmlState internal constructor(
+    val loadingState: LoadingState = LoadingState.Loading,
     val customHtmlViewPosition: List<Int>,
     val customHtmlViewQueue: ArrayDeque<CustomHtmlView>,
     val text: AnnotatedString
-)
+) {
+    sealed class LoadingState {
+        data object Loading : LoadingState()
+        data object Success : LoadingState()
+    }
+}
 
 data class CustomHtmlView(
     val type: CustomHtmlViewType,
@@ -89,6 +99,39 @@ fun rememberHtmlState(
     html: String,
     parser: MiniXmlPullParser = MiniXmlPullParser(source = html.iterator(), relaxed = true),
     isDarkTheme: Boolean = isSystemInDarkTheme()
+): HtmlState {
+    val hyperLinkColor = MaterialTheme.koreatechColorPalette.hyperLink
+    return produceState(
+        initialValue = HtmlState(
+            loadingState = HtmlState.LoadingState.Loading,
+            customHtmlViewPosition = listOf(0),
+            customHtmlViewQueue = ArrayDeque(),
+            text = AnnotatedString("")
+        )
+    ) {
+        val parsedValue = withContext(Dispatchers.Main) {
+            parseHtml(
+                baseUrl = baseUrl,
+                parser = parser,
+                isDarkTheme = isDarkTheme,
+                hyperLinkColor = hyperLinkColor
+            )
+        }
+
+        value = HtmlState(
+            loadingState = HtmlState.LoadingState.Success,
+            customHtmlViewPosition = parsedValue.customHtmlViewPosition,
+            customHtmlViewQueue = parsedValue.customHtmlViewQueue,
+            text = parsedValue.text
+        )
+    }.value
+}
+
+fun parseHtml(
+    baseUrl: String,
+    parser: MiniXmlPullParser,
+    isDarkTheme: Boolean,
+    hyperLinkColor: Color
 ): HtmlState {
     val customHtmlViewPosition: MutableList<Int> = mutableListOf(0)
     val customHtmlViewQueue = ArrayDeque<CustomHtmlView>()
@@ -425,7 +468,7 @@ fun rememberHtmlState(
                                 )
                                 addStyle(
                                     SpanStyle(
-                                        color = MaterialTheme.koreatechColorPalette.hyperLink,
+                                        color = hyperLinkColor,
                                         textDecoration = TextDecoration.Underline
                                     ),
                                     length + offset.first,
@@ -446,7 +489,7 @@ fun rememberHtmlState(
                                 )
                                 addStyle(
                                     SpanStyle(
-                                        color = MaterialTheme.koreatechColorPalette.hyperLink,
+                                        color = hyperLinkColor,
                                         textDecoration = TextDecoration.Underline
                                     ),
                                     length + offset.first,
@@ -465,7 +508,7 @@ fun rememberHtmlState(
                                 )
                                 addStyle(
                                     SpanStyle(
-                                        color = MaterialTheme.koreatechColorPalette.hyperLink,
+                                        color = hyperLinkColor,
                                         textDecoration = TextDecoration.Underline
                                     ),
                                     length + offset.first,
