@@ -43,6 +43,7 @@ import com.kongjak.koreatechboard.ui.components.dialog.ImageDialog
 import com.kongjak.koreatechboard.ui.components.text.FileText
 import com.kongjak.koreatechboard.ui.theme.articleSubText
 import com.kongjak.koreatechboard.ui.theme.articleTitle
+import com.kongjak.koreatechboard.util.rememberHtmlState
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 import java.util.UUID
@@ -178,13 +179,17 @@ fun ArticleView(
                 var showImageDialog by remember { mutableStateOf(false) }
                 var imageUri by remember { mutableStateOf("") }
 
+                val htmlState = rememberHtmlState(
+                    baseUrl = baseUrl,
+                    html = it.content,
+                    isDarkTheme = isDarkTheme
+                )
+
                 HtmlView(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(horizontal = 16.dp),
-                    html = it.content,
-                    baseUrl = baseUrl,
-                    isDarkTheme = isDarkTheme,
+                    htmlState = htmlState,
                     image = { url, description ->
                         SubcomposeAsyncImage(
                             modifier = Modifier
