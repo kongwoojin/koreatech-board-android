@@ -19,6 +19,7 @@ fun parseColor(value: String, isDarkMode: Boolean, isBackground: Boolean = false
         green = Integer.parseInt(value.substring(3, 5), 16)
         blue = Integer.parseInt(value.substring(5, 7), 16)
     } else if (value.startsWith("rgb")) {
+        if (value.split("rgb").size > 2) return Color.Unspecified
         val tmp = parseRGB(value)
         red = tmp[0]
         green = tmp[1]
