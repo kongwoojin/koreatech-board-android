@@ -3,6 +3,7 @@ package com.kongjak.koreatechboard.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.kongjak.koreatechboard.data.api.API
+import com.kongjak.koreatechboard.data.mapper.mapToBoardData
 import com.kongjak.koreatechboard.domain.model.BoardData
 
 class SearchTitlePagingSource(private val api: API, private val site: String, private val board: String, private val title: String) : PagingSource<Int, BoardData>() {
@@ -14,7 +15,7 @@ class SearchTitlePagingSource(private val api: API, private val site: String, pr
             val response = api.searchBoardWithTitle(site, board, title, page)
 
             return LoadResult.Page(
-                data = response.boardData ?: emptyList(),
+                data = response.boardData?.map { it.mapToBoardData() } ?: emptyList(),
                 prevKey = if (page <= 1) null else page - 1,
                 nextKey = if (page >= response.lastPage) null else page + 1
             )
