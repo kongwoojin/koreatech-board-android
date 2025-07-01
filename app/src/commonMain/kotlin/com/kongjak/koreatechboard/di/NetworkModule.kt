@@ -16,7 +16,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 private const val API_PRODUCTION = "https://api.koreatech.kongjak.com/v3/"
-private const val API_DEVELOPMENT = "https://dev.api.koreatech.kongjak.com/v3/"
+private const val API_DEVELOPMENT = "https://api.koreatech.kongjak.com/v3/"
 
 private val apiUrl = if (getBuildInfo().buildType is BuildType.Release) {
     API_PRODUCTION

@@ -1,6 +1,7 @@
 package com.kongjak.koreatechboard.domain.model
 
-import com.benasher44.uuid.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 data class Board(
     val lastPage: Int,
@@ -8,7 +9,7 @@ data class Board(
     val boardData: List<BoardData>?
 )
 
-data class BoardData(
+data class BoardData @OptIn(ExperimentalUuidApi::class) constructor(
     val uuid: Uuid,
     val title: String,
     val num: Int,

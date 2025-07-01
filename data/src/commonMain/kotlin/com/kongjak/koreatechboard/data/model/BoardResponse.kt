@@ -1,9 +1,10 @@
 package com.kongjak.koreatechboard.data.model
 
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.data.util.UUIDSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 @Serializable
 data class BoardResponse(
@@ -18,7 +19,7 @@ data class BoardResponse(
 )
 
 @Serializable
-data class BoardResponseData(
+data class BoardResponseData @OptIn(ExperimentalUuidApi::class) constructor(
     @Serializable(with = UUIDSerializer::class)
     @SerialName("id")
     val uuid: Uuid,

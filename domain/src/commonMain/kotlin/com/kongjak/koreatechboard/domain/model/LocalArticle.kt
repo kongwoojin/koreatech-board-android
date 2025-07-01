@@ -1,8 +1,9 @@
 package com.kongjak.koreatechboard.domain.model
 
-import com.benasher44.uuid.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
-data class LocalArticle(
+data class LocalArticle @OptIn(ExperimentalUuidApi::class) constructor(
     val uuid: Uuid,
     val num: Int,
     val title: String,

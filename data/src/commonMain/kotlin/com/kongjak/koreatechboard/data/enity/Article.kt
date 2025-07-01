@@ -1,8 +1,9 @@
 package com.kongjak.koreatechboard.data.enity
 
-import com.benasher44.uuid.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
-data class Article(
+data class Article @OptIn(ExperimentalUuidApi::class) constructor(
     val uuid: Uuid,
     val num: Int,
     val title: String,

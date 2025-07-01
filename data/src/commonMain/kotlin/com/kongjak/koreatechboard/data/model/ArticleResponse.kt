@@ -1,11 +1,13 @@
 package com.kongjak.koreatechboard.data.model
 
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.data.util.UUIDSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 @Serializable
+@OptIn(ExperimentalUuidApi::class)
 data class ArticleResponse(
     @SerialName("status_code")
     val statusCode: Int,

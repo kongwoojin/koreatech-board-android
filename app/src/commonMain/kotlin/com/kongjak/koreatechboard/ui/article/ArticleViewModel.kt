@@ -1,7 +1,6 @@
 package com.kongjak.koreatechboard.ui.article
 
 import androidx.lifecycle.viewModelScope
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.domain.usecase.api.GetArticleUseCase
 import com.kongjak.koreatechboard.util.ViewModelExt
 import io.ktor.client.plugins.HttpRequestTimeoutException
@@ -14,7 +13,10 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 import java.net.UnknownHostException
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 class ArticleViewModel(
     private val getArticleUseCase: GetArticleUseCase
 ) : ViewModelExt<ArticleState, ArticleSideEffect>(ArticleState()) {

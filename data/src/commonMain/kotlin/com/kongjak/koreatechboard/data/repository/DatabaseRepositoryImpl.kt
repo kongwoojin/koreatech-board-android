@@ -1,6 +1,5 @@
 package com.kongjak.koreatechboard.data.repository
 
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.data.datasource.local.DatabaseLocalDataSource
 import com.kongjak.koreatechboard.data.datasource.remote.ArticleRemoteDataSource
 import com.kongjak.koreatechboard.data.mapper.mapToArticle
@@ -12,7 +11,10 @@ import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpRequestTimeoutException
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 class DatabaseRepositoryImpl(
     private val databaseLocalDataSource: DatabaseLocalDataSource,
     private val articleRemoteDataSource: ArticleRemoteDataSource

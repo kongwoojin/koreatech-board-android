@@ -4,6 +4,7 @@ import com.kongjak.koreatechboard.data.model.BoardResponse
 import com.kongjak.koreatechboard.data.model.BoardResponseData
 import com.kongjak.koreatechboard.domain.model.Board
 import com.kongjak.koreatechboard.domain.model.BoardData
+import kotlin.uuid.ExperimentalUuidApi
 
 fun BoardResponse.mapToBoard(): Board {
     return Board(
@@ -15,6 +16,7 @@ fun BoardResponse.mapToBoard(): Board {
     )
 }
 
+@OptIn(ExperimentalUuidApi::class)
 fun BoardResponseData.mapToBoardData(): BoardData = BoardData(
     uuid = this.uuid,
     title = this.title,

@@ -1,9 +1,11 @@
 package com.kongjak.koreatechboard.domain.repository
 
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.domain.model.LocalArticle
 import kotlinx.coroutines.flow.Flow
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 interface DatabaseRepository {
     suspend fun getArticleList(vararg departments: String): Flow<List<LocalArticle>>
     suspend fun getArticle(uuid: Uuid): LocalArticle

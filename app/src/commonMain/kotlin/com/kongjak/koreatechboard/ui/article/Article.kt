@@ -35,7 +35,6 @@ import coil3.compose.LocalPlatformContext
 import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.constant.REGEX_BASE_URL
 import com.kongjak.koreatechboard.domain.model.Article
 import com.kongjak.koreatechboard.ui.components.HtmlView
@@ -47,8 +46,10 @@ import com.kongjak.koreatechboard.ui.theme.articleTitle
 import com.kongjak.koreatechboard.util.rememberHtmlState
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
-@OptIn(ExperimentalMaterial3Api::class, KoinExperimentalAPI::class)
+@OptIn(ExperimentalMaterial3Api::class, KoinExperimentalAPI::class, ExperimentalUuidApi::class)
 @Composable
 fun ArticleScreen(
     articleViewModel: ArticleViewModel = koinViewModel(),

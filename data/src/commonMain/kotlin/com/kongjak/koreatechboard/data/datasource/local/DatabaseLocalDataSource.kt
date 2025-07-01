@@ -1,12 +1,14 @@
 package com.kongjak.koreatechboard.data.datasource.local
 
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.data.dao.ArticleDao
 import com.kongjak.koreatechboard.data.enity.Article
 import com.kongjak.koreatechboard.data.mapper.mapToLocalArticle
 import com.kongjak.koreatechboard.domain.model.LocalArticle
 import kotlinx.coroutines.flow.Flow
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 class DatabaseLocalDataSource(
     private val articleDao: ArticleDao
 ) {

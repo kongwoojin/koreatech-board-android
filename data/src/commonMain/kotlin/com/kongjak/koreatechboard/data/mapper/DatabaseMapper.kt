@@ -4,7 +4,9 @@ import com.kongjak.koreatechboard.data.enity.Article
 import com.kongjak.koreatechboard.data.model.ArticleResponse
 import com.kongjak.koreatechboard.domain.model.LocalArticle
 import java.util.concurrent.TimeUnit
+import kotlin.uuid.ExperimentalUuidApi
 
+@OptIn(ExperimentalUuidApi::class)
 fun List<Article>.mapToLocalArticle(): List<LocalArticle> {
     return this.map {
         LocalArticle(
@@ -24,6 +26,7 @@ fun List<Article>.mapToLocalArticle(): List<LocalArticle> {
     }
 }
 
+@OptIn(ExperimentalUuidApi::class)
 fun List<LocalArticle>.mapToArticle(): List<Article> {
     return this.map {
         Article(
@@ -43,6 +46,7 @@ fun List<LocalArticle>.mapToArticle(): List<Article> {
     }
 }
 
+@OptIn(ExperimentalUuidApi::class)
 fun LocalArticle.mapToArticle(): Article {
     return Article(
         uuid = this.uuid,
@@ -60,6 +64,7 @@ fun LocalArticle.mapToArticle(): Article {
     )
 }
 
+@OptIn(ExperimentalUuidApi::class)
 fun Article.mapToLocalArticle(): LocalArticle {
     return LocalArticle(
         uuid = this.uuid,
@@ -77,6 +82,7 @@ fun Article.mapToLocalArticle(): LocalArticle {
     )
 }
 
+@OptIn(ExperimentalUuidApi::class)
 fun ArticleResponse.mapToArticle(department: String, board: String): Article {
     return Article(
         uuid = this.uuid,

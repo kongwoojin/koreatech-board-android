@@ -56,7 +56,6 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.ui.components.BoardItem
 import com.kongjak.koreatechboard.ui.components.dialog.TextFieldDialog
 import com.kongjak.koreatechboard.ui.settings.deptList
@@ -82,8 +81,10 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 import java.net.UnknownHostException
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalUuidApi::class)
 @Composable
 fun BoardScreen(
     initDepartment: Int,
@@ -139,7 +140,7 @@ fun BoardScreen(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalUuidApi::class)
 @Composable
 fun Board(
     contentPadding: PaddingValues,
@@ -195,7 +196,7 @@ fun Board(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, KoinExperimentalAPI::class)
+@OptIn(ExperimentalMaterial3Api::class, KoinExperimentalAPI::class, ExperimentalUuidApi::class)
 @Composable
 fun BoardContent(
     department: Department,
@@ -203,7 +204,8 @@ fun BoardContent(
     onArticleClick: (Uuid, String) -> Unit,
     onSearch: (String, String, String) -> Unit
 ) {
-    val boardViewModel = koinViewModel<BoardViewModel>(key = "${department.name}:${department.boards[page].board}")
+    val boardViewModel =
+        koinViewModel<BoardViewModel>(key = "${department.name}:${department.boards[page].board}")
 
     boardViewModel.collectSideEffect { boardViewModel.handleSideEffect(it) }
 
@@ -237,7 +239,12 @@ fun BoardContent(
     Scaffold(
         contentWindowInsets = WindowInsets(0.dp),
         floatingActionButton = {
-            SearchFAB(department = department, index = page, snackbarHostState = snackbarHostState, onSearch = onSearch)
+            SearchFAB(
+                department = department,
+                index = page,
+                snackbarHostState = snackbarHostState,
+                onSearch = onSearch
+            )
         },
         snackbarHost = {
             SnackbarHost(hostState = snackbarHostState)

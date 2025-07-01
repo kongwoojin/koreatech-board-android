@@ -1,12 +1,14 @@
 package com.kongjak.koreatechboard.data.util
 
-import com.benasher44.uuid.Uuid
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 object UUIDSerializer : KSerializer<Uuid> {
     override val descriptor = PrimitiveSerialDescriptor("UUID", PrimitiveKind.STRING)
 
@@ -15,6 +17,6 @@ object UUIDSerializer : KSerializer<Uuid> {
     }
 
     override fun deserialize(decoder: Decoder): Uuid {
-        return Uuid.fromString(decoder.decodeString())
+        return Uuid.parse(decoder.decodeString())
     }
 }

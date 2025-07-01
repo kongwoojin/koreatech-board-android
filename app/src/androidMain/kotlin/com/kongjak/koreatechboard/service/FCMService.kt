@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.benasher44.uuid.Uuid
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.kongjak.koreatechboard.MainActivity
@@ -31,16 +30,20 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.StringResource
 import org.koin.android.ext.android.inject
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 class FCMService : FirebaseMessagingService() {
     val insertMultipleNewNoticesUseCase: InsertMultipleNewNoticesUseCase by inject()
+
+    @OptIn(ExperimentalUuidApi::class)
     override fun onMessageReceived(message: RemoteMessage) {
         if (message.data["new_articles"] != null && message.data["new_articles"]!!.isNotEmpty()) {
             CoroutineScope(Dispatchers.IO).launch {
                 runCatching {
                     insertMultipleNewNoticesUseCase(
                         message.data["new_articles"]?.split(":")?.takeIf { it.isNotEmpty() }
-                            ?.map { Uuid.fromString(it) } ?: emptyList(),
+                            ?.map { Uuid.parse(it) } ?: emptyList(),
                         message.data["department"] ?: "school",
                         message.data["board"] ?: "notice"
                     )

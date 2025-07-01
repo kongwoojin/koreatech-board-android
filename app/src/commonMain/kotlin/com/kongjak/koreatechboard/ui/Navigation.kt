@@ -22,7 +22,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.ui.article.ArticleScreen
 import com.kongjak.koreatechboard.ui.board.BoardScreen
 import com.kongjak.koreatechboard.ui.home.HomeScreen
@@ -32,6 +31,8 @@ import com.kongjak.koreatechboard.ui.search.SearchScreen
 import com.kongjak.koreatechboard.ui.settings.SettingsScreen
 import com.kongjak.koreatechboard.util.routes.MainRoute
 import org.jetbrains.compose.resources.stringResource
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 val items = listOf(
     MainRoute.Home,
@@ -39,7 +40,7 @@ val items = listOf(
     MainRoute.Settings
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalUuidApi::class)
 @Composable
 fun NavigationGraph(
     modifier: Modifier = Modifier,
@@ -86,7 +87,8 @@ fun NavigationGraph(
         composableWithAnimation(
             route = "${MainRoute.Article.name}/{uuid}/{department}"
         ) { backStackEntry ->
-            val uuid = Uuid.fromString(backStackEntry.arguments?.getString("uuid")!!)
+            val uuid =
+                Uuid.parse(backStackEntry.arguments?.getString("uuid")!!)
             val department = backStackEntry.arguments?.getString("department")!!
             ArticleScreen(
                 uuid = uuid,

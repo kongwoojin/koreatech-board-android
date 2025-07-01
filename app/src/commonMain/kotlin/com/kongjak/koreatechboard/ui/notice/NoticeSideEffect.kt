@@ -1,7 +1,9 @@
 package com.kongjak.koreatechboard.ui.notice
 
-import com.benasher44.uuid.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 sealed class NoticeSideEffect {
     data class GetAllNotices(val departments: List<String>) : NoticeSideEffect()
     data class UpdateRead(val uuid: Uuid, val read: Boolean) : NoticeSideEffect()

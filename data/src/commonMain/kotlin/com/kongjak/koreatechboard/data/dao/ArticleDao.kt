@@ -1,9 +1,11 @@
 package com.kongjak.koreatechboard.data.dao
 
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.data.enity.Article
 import kotlinx.coroutines.flow.Flow
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 interface ArticleDao {
     fun getAll(vararg departments: String): Flow<List<Article>>
 

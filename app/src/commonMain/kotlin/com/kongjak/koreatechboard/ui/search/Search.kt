@@ -23,7 +23,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.ui.board.BoardError
 import com.kongjak.koreatechboard.ui.components.BoardItem
 import koreatech_board.app.generated.resources.Res
@@ -31,8 +30,10 @@ import koreatech_board.app.generated.resources.search_no_result
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
-@OptIn(KoinExperimentalAPI::class)
+@OptIn(KoinExperimentalAPI::class, ExperimentalUuidApi::class)
 @Composable
 fun SearchScreen(
     department: String,

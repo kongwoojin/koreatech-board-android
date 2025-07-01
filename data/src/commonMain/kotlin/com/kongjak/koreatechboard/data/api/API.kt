@@ -1,7 +1,8 @@
 package com.kongjak.koreatechboard.data.api
 
-import com.benasher44.uuid.Uuid
 import io.ktor.client.statement.HttpResponse
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 interface API {
     suspend fun getBoard(
@@ -16,6 +17,7 @@ interface API {
         board: String
     ): HttpResponse
 
+    @OptIn(ExperimentalUuidApi::class)
     suspend fun getArticle(
         uuid: Uuid
     ): HttpResponse

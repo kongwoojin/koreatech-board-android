@@ -2,12 +2,14 @@ package com.kongjak.koreatechboard.data.dao
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
-import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.data.AppDatabase
 import com.kongjak.koreatechboard.data.enity.Article
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 class ArticleDaoImpl(
     db: AppDatabase
 ) : ArticleDao {
@@ -16,7 +18,7 @@ class ArticleDaoImpl(
     override fun getAll(vararg departments: String): Flow<List<Article>> {
         return queries.getAll { uuid, num, title, writer, content, writeDate, articleUrl, department, board, read, isNotice, receivedTime ->
             Article(
-                uuid = Uuid.fromString(uuid),
+                uuid = Uuid.parse(uuid),
                 num = num.toInt(),
                 title = title,
                 writer = writer,
@@ -35,7 +37,7 @@ class ArticleDaoImpl(
     override fun getArticle(uuid: Uuid): Article {
         return queries.getArticle(uuid.toString()).executeAsOne().let {
             Article(
-                uuid = Uuid.fromString(it.uuid),
+                uuid = Uuid.parse(it.uuid),
                 num = it.num.toInt(),
                 title = it.title,
                 writer = it.writer,

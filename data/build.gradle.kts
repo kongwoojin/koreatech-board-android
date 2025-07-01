@@ -39,8 +39,6 @@ kotlin {
             implementation(libs.napier)
             implementation(libs.paging.common)
             implementation(libs.sqldelight.coroutines.extensions)
-
-            implementation(libs.uuid)
         }
     }
 }
