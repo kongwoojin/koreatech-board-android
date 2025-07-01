@@ -9,6 +9,7 @@ val localKeyPassword: String = gradleLocalProperties(rootDir).getProperty("local
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.koreatechboard.application)
     alias(libs.plugins.koreatechboard.firebase)
     alias(libs.plugins.ktlint)
@@ -25,9 +26,11 @@ kotlin {
     }
 
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "17"
+        compilations.configureEach {
+            compilerOptions.configure {
+                jvmTarget.set(
+                    org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+                )
             }
         }
     }

@@ -21,7 +21,7 @@ kcef = "2024.04.20"
 koin = "3.6.0-Beta4"
 koin-compose = "1.2.0-Beta4"
 ktlint = "11.5.1"
-kotlin = "1.9.23"
+kotlin = "2.2.0"
 kotlinx = "1.6.3"
 ktor = "2.3.11"
 ktxml = "0.2.3"
@@ -91,6 +91,7 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics"}
 google-services = { id = "com.google.gms.google-services", version.ref = "google-service" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
