@@ -8,13 +8,12 @@ data class Board(
     val boardData: List<BoardData>?
 )
 
-interface BoardData {
-    val uuid: Uuid
-    val title: String
-    val num: Int
-    val writer: String
-    val writeDate: String
-    val read: Int
+data class BoardData(
+    val uuid: Uuid,
+    val title: String,
+    val num: Int,
+    val writer: String,
+    val writeDate: String,
+    val read: Int,
     val isNew: Boolean
-    val isNotice: Boolean
-}
+)

@@ -1,7 +1,6 @@
 package com.kongjak.koreatechboard.ui.home
 
 import androidx.lifecycle.viewModelScope
-import com.kongjak.koreatechboard.domain.base.APIResult
 import com.kongjak.koreatechboard.domain.usecase.api.GetBoardMinimumUseCase
 import com.kongjak.koreatechboard.util.ViewModelExt
 import io.ktor.client.plugins.HttpRequestTimeoutException
@@ -41,68 +40,41 @@ class HomeBoardViewModel(private val getBoardMinimumUseCase: GetBoardMinimumUseC
                         reduce {
                             state.copy(
                                 boardData = state.boardData + (
-                                    sideEffect.board to (
-                                        state.boardData[sideEffect.board]?.copy(
-                                            isLoaded = false
-                                        ) ?: HomeBoardState.HomeBoardData(
-                                            isLoaded = false
+                                        sideEffect.board to (
+                                                state.boardData[sideEffect.board]?.copy(
+                                                    isLoaded = false
+                                                ) ?: HomeBoardState.HomeBoardData(
+                                                    isLoaded = false
+                                                )
+                                                )
                                         )
-                                        )
-                                    )
                             )
                         }
                     }
 
                     runCatching {
-                        getBoardMinimumUseCase(sideEffect.department, sideEffect.board)
+                        getBoardMinimumUseCase(sideEffect.department, sideEffect.board).getOrNull()
                     }.onSuccess {
-                        when (it) {
-                            is APIResult.Success -> {
-                                intent {
-                                    reduce {
-                                        state.copy(
-                                            boardData = state.boardData + (
-                                                sideEffect.board to (
+                        intent {
+                            reduce {
+                                state.copy(
+                                    boardData = state.boardData + (
+                                            sideEffect.board to (
                                                     state.boardData[sideEffect.board]?.copy(
                                                         isSuccess = true,
-                                                        boardData = it.data.boardData
-                                                            ?: emptyList(),
-                                                        statusCode = it.data.statusCode,
+                                                        boardData = it?.boardData ?: emptyList(),
+                                                        statusCode = it?.statusCode ?: 200,
                                                         isLoaded = true
                                                     ) ?: HomeBoardState.HomeBoardData(
                                                         isSuccess = true,
-                                                        boardData = it.data.boardData
+                                                        boardData = it?.boardData
                                                             ?: emptyList(),
-                                                        statusCode = it.data.statusCode,
+                                                        statusCode = it?.statusCode ?: 200,
                                                         isLoaded = true
                                                     )
                                                     )
-                                                )
-                                        )
-                                    }
-                                }
-                            }
-
-                            is APIResult.Error -> {
-                                intent {
-                                    reduce {
-                                        state.copy(
-                                            boardData = state.boardData + (
-                                                sideEffect.board to (
-                                                    state.boardData[sideEffect.board]?.copy(
-                                                        isSuccess = false,
-                                                        statusCode = it.errorType.statusCode,
-                                                        error = it.errorType.statusCode.toString()
-                                                    ) ?: HomeBoardState.HomeBoardData(
-                                                        isSuccess = false,
-                                                        statusCode = it.errorType.statusCode,
-                                                        error = it.errorType.statusCode.toString()
-                                                    )
-                                                    )
-                                                )
-                                        )
-                                    }
-                                }
+                                            )
+                                )
                             }
                         }
                     }.onFailure {
@@ -119,18 +91,18 @@ class HomeBoardViewModel(private val getBoardMinimumUseCase: GetBoardMinimumUseC
                             reduce {
                                 state.copy(
                                     boardData = state.boardData + (
-                                        sideEffect.board to (
-                                            state.boardData[sideEffect.board]?.copy(
-                                                isSuccess = false,
-                                                error = errorMessage,
-                                                isLoaded = true
-                                            ) ?: HomeBoardState.HomeBoardData(
-                                                isSuccess = false,
-                                                error = errorMessage,
-                                                isLoaded = true
+                                            sideEffect.board to (
+                                                    state.boardData[sideEffect.board]?.copy(
+                                                        isSuccess = false,
+                                                        error = errorMessage,
+                                                        isLoaded = true
+                                                    ) ?: HomeBoardState.HomeBoardData(
+                                                        isSuccess = false,
+                                                        error = errorMessage,
+                                                        isLoaded = true
+                                                    )
+                                                    )
                                             )
-                                            )
-                                        )
                                 )
                             }
                         }

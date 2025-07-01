@@ -6,62 +6,68 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import io.github.aakira.napier.Napier
 
 fun parseColor(value: String, isDarkMode: Boolean, isBackground: Boolean = false): Color {
-    var red: Int
-    var green: Int
-    var blue: Int
-    if (value.startsWith("#")) {
-        red = Integer.parseInt(value.substring(1, 3), 16)
-        green = Integer.parseInt(value.substring(3, 5), 16)
-        blue = Integer.parseInt(value.substring(5, 7), 16)
-    } else if (value.startsWith("rgb")) {
-        val tmp = parseRGB(value)
-        red = tmp[0]
-        green = tmp[1]
-        blue = tmp[2]
-    } else {
-        val color = when (value) {
-            "black" -> Color.Black
-            "white" -> Color.White
-            "red" -> Color.Red
-            "green" -> Color.Green
-            "blue" -> Color.Blue
-            "yellow" -> Color.Yellow
-            "cyan" -> Color.Cyan
-            "magenta" -> Color.Magenta
-            "gray" -> Color.Gray
-            "lightgray" -> Color.LightGray
-            "darkgray" -> Color.DarkGray
-            "grey" -> Color.Gray
-            "lightgrey" -> Color.LightGray
-            "darkgrey" -> Color.DarkGray
-            else -> Color.Unspecified
-        }
-
-        red = color.red.toInt()
-        green = color.green.toInt()
-        blue = color.blue.toInt()
-    }
-
-    if (isDarkMode) {
-        val luminance = 0.299 * red + 0.587 * green + 0.114 * blue
-        if (!isBackground) {
-            if (luminance <= 186) {
-                red = 255 - red
-                green = 255 - green
-                blue = 255 - blue
-            }
+    return try {
+        var red: Int
+        var green: Int
+        var blue: Int
+        if (value.startsWith("#")) {
+            red = Integer.parseInt(value.substring(1, 3), 16)
+            green = Integer.parseInt(value.substring(3, 5), 16)
+            blue = Integer.parseInt(value.substring(5, 7), 16)
+        } else if (value.startsWith("rgb")) {
+            if (value.split("rgb").size > 2) return Color.Unspecified
+            val tmp = parseRGB(value)
+            red = tmp[0]
+            green = tmp[1]
+            blue = tmp[2]
         } else {
-            if (luminance > 186) {
-                red = 255 - red
-                green = 255 - green
-                blue = 255 - blue
+            val color = when (value) {
+                "black" -> Color.Black
+                "white" -> Color.White
+                "red" -> Color.Red
+                "green" -> Color.Green
+                "blue" -> Color.Blue
+                "yellow" -> Color.Yellow
+                "cyan" -> Color.Cyan
+                "magenta" -> Color.Magenta
+                "gray" -> Color.Gray
+                "lightgray" -> Color.LightGray
+                "darkgray" -> Color.DarkGray
+                "grey" -> Color.Gray
+                "lightgrey" -> Color.LightGray
+                "darkgrey" -> Color.DarkGray
+                else -> Color.Unspecified
+            }
+
+            red = color.red.toInt()
+            green = color.green.toInt()
+            blue = color.blue.toInt()
+        }
+
+        if (isDarkMode) {
+            val luminance = 0.299 * red + 0.587 * green + 0.114 * blue
+            if (!isBackground) {
+                if (luminance <= 186) {
+                    red = 255 - red
+                    green = 255 - green
+                    blue = 255 - blue
+                }
+            } else {
+                if (luminance > 186) {
+                    red = 255 - red
+                    green = 255 - green
+                    blue = 255 - blue
+                }
             }
         }
+        return Color(red, green, blue)
+    } catch (e: Exception) {
+        Napier.e("Error parsing color: $value", e)
+        Color.Unspecified
     }
-
-    return Color(red, green, blue)
 }
 
 private fun parseFontWeight(value: String): FontWeight? {
@@ -140,8 +146,13 @@ fun parseSpanStyle(css: String?, isDarkMode: Boolean): SpanStyle {
     if (css == null) return SpanStyle()
     if (css.isEmpty()) return SpanStyle()
     val cssMap = css.split(";").filter { it.isNotBlank() }.associate {
-        val (key, value) = it.split(":")
-        key.trim() to value.trim()
+        try {
+            val (key, value) = it.split(":")
+            key.trim() to value.trim()
+        } catch (e: Exception) {
+            Napier.e("Error parsing css: $css")
+            "" to ""
+        }
     }
 
     val hasBackgroundColor = cssMap.containsKey("background-color")

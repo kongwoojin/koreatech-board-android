@@ -1,4 +1,4 @@
-package com.kongjak.koreatechboard.constraint
+package com.kongjak.koreatechboard.constant
 
 const val FCM_TOPIC_SCHOOL = "school"
 const val FCM_TOPIC_DORM = "dorm"

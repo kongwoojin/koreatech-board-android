@@ -9,7 +9,6 @@ import com.kongjak.koreatechboard.data.mapper.mapToBoard
 import com.kongjak.koreatechboard.data.model.BoardResponse
 import com.kongjak.koreatechboard.data.paging.BoardPagingSource
 import com.kongjak.koreatechboard.data.paging.SearchTitlePagingSource
-import com.kongjak.koreatechboard.domain.base.APIResult
 import com.kongjak.koreatechboard.domain.model.Board
 import com.kongjak.koreatechboard.domain.model.BoardData
 import com.kongjak.koreatechboard.domain.repository.BoardRepository
@@ -31,10 +30,15 @@ class BoardRepositoryImpl(
         ).flow
     }
 
-    override suspend fun getBoardMinimum(department: String, board: String): APIResult<Board> {
-        val response = boardRemoteDataSource.getBoardMinimum(department, board)
-        val data: BoardResponse = response.body()
-        return data.mapToBoard()
+    override suspend fun getBoardMinimum(department: String, board: String): Result<Board> {
+        return try {
+            Result.success(
+                boardRemoteDataSource.getBoardMinimum(department, board).body<BoardResponse>()
+                    .mapToBoard()
+            )
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 
     override fun searchTitle(

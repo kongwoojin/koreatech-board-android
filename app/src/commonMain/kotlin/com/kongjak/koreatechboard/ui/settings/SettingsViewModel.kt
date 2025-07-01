@@ -1,8 +1,8 @@
 package com.kongjak.koreatechboard.ui.settings
 
 import androidx.lifecycle.viewModelScope
-import com.kongjak.koreatechboard.constraint.FCM_TOPIC_DORM
-import com.kongjak.koreatechboard.constraint.FCM_TOPIC_SCHOOL
+import com.kongjak.koreatechboard.constant.FCM_TOPIC_DORM
+import com.kongjak.koreatechboard.constant.FCM_TOPIC_SCHOOL
 import com.kongjak.koreatechboard.domain.usecase.database.DeleteAllNewNoticesUseCase
 import com.kongjak.koreatechboard.domain.usecase.settings.department.GetInitDepartmentUseCase
 import com.kongjak.koreatechboard.domain.usecase.settings.department.GetUserDepartmentUseCase

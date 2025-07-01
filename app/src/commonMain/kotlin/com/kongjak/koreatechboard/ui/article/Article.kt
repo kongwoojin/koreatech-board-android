@@ -5,9 +5,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
@@ -33,7 +36,7 @@ import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.benasher44.uuid.Uuid
-import com.kongjak.koreatechboard.constraint.REGEX_BASE_URL
+import com.kongjak.koreatechboard.constant.REGEX_BASE_URL
 import com.kongjak.koreatechboard.domain.model.Article
 import com.kongjak.koreatechboard.ui.components.HtmlView
 import com.kongjak.koreatechboard.ui.components.WebView
@@ -41,6 +44,7 @@ import com.kongjak.koreatechboard.ui.components.dialog.ImageDialog
 import com.kongjak.koreatechboard.ui.components.text.FileText
 import com.kongjak.koreatechboard.ui.theme.articleSubText
 import com.kongjak.koreatechboard.ui.theme.articleTitle
+import com.kongjak.koreatechboard.util.rememberHtmlState
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 
@@ -131,6 +135,7 @@ fun ArticleView(
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
+                    .windowInsetsPadding(WindowInsets.navigationBars)
             ) {
                 Text(
                     text = it.title,
@@ -172,13 +177,17 @@ fun ArticleView(
                 var showImageDialog by remember { mutableStateOf(false) }
                 var imageUri by remember { mutableStateOf("") }
 
+                val htmlState = rememberHtmlState(
+                    baseUrl = baseUrl,
+                    html = it.content,
+                    isDarkTheme = isDarkTheme
+                )
+
                 HtmlView(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(horizontal = 16.dp),
-                    html = it.content,
-                    baseUrl = baseUrl,
-                    isDarkTheme = isDarkTheme,
+                    htmlState = htmlState,
                     image = { url, description ->
                         SubcomposeAsyncImage(
                             modifier = Modifier

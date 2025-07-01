@@ -2,7 +2,6 @@ package com.kongjak.koreatechboard.data.model
 
 import com.benasher44.uuid.Uuid
 import com.kongjak.koreatechboard.data.util.UUIDSerializer
-import com.kongjak.koreatechboard.domain.model.BoardData
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -22,19 +21,19 @@ data class BoardResponse(
 data class BoardResponseData(
     @Serializable(with = UUIDSerializer::class)
     @SerialName("id")
-    override val uuid: Uuid,
+    val uuid: Uuid,
     @SerialName("title")
-    override val title: String,
+    val title: String,
     @SerialName("num")
-    override val num: Int,
+    val num: Int,
     @SerialName("writer")
-    override val writer: String,
+    val writer: String,
     @SerialName("write_date")
-    override val writeDate: String,
+    val writeDate: String,
     @SerialName("read_count")
-    override val read: Int,
+    val read: Int,
     @SerialName("is_new")
-    override val isNew: Boolean,
+    val isNew: Boolean,
     @SerialName("is_notice")
-    override val isNotice: Boolean
-) : BoardData
+    val isNotice: Boolean
+)

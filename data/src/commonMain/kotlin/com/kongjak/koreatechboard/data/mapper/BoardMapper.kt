@@ -1,20 +1,26 @@
 package com.kongjak.koreatechboard.data.mapper
 
 import com.kongjak.koreatechboard.data.model.BoardResponse
-import com.kongjak.koreatechboard.domain.base.APIResult
-import com.kongjak.koreatechboard.domain.base.ErrorType
+import com.kongjak.koreatechboard.data.model.BoardResponseData
 import com.kongjak.koreatechboard.domain.model.Board
+import com.kongjak.koreatechboard.domain.model.BoardData
 
-fun BoardResponse.mapToBoard(): APIResult<Board> {
-    return if (this.statusCode == 200) {
-        APIResult.Success(
-            Board(
-                lastPage = this.lastPage,
-                statusCode = this.statusCode,
-                boardData = this.boardData ?: emptyList()
-            )
-        )
-    } else {
-        APIResult.Error(ErrorType(this.statusCode, this.error))
-    }
+fun BoardResponse.mapToBoard(): Board {
+    return Board(
+        lastPage = this.lastPage,
+        statusCode = this.statusCode,
+        boardData = this.boardData?.map {
+            it.mapToBoardData()
+        } ?: emptyList()
+    )
 }
+
+fun BoardResponseData.mapToBoardData(): BoardData = BoardData(
+    uuid = this.uuid,
+    title = this.title,
+    num = this.num,
+    writer = this.writer,
+    writeDate = this.writeDate,
+    read = this.read,
+    isNew = this.isNew
+)

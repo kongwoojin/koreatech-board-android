@@ -3,6 +3,7 @@ package com.kongjak.koreatechboard.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.kongjak.koreatechboard.data.api.API
+import com.kongjak.koreatechboard.data.mapper.mapToBoardData
 import com.kongjak.koreatechboard.data.model.BoardResponse
 import com.kongjak.koreatechboard.domain.model.BoardData
 import io.ktor.client.call.body
@@ -27,7 +28,7 @@ class SearchTitlePagingSource(
             val response = responseRaw.body<BoardResponse>()
 
             return LoadResult.Page(
-                data = response.boardData ?: emptyList(),
+                data = response.boardData?.map { it.mapToBoardData() } ?: emptyList(),
                 prevKey = if (page <= 1) null else page - 1,
                 nextKey = if (page >= response.lastPage) null else page + 1
             )
