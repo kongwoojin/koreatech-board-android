@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
@@ -67,6 +68,7 @@ import org.kobjects.ktxml.api.XmlPullParserException
 import org.kobjects.ktxml.mini.MiniXmlPullParser
 import kotlin.random.Random
 
+@Immutable
 class HtmlState internal constructor(
     val loadingState: LoadingState = LoadingState.Loading,
     val customHtmlViewPosition: List<Int>,
@@ -117,7 +119,6 @@ fun rememberHtmlState(
                 hyperLinkColor = hyperLinkColor
             )
         }
-
         value = HtmlState(
             loadingState = HtmlState.LoadingState.Success,
             customHtmlViewPosition = parsedValue.customHtmlViewPosition,
