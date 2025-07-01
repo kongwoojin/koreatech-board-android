@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -136,7 +137,6 @@ fun ArticleView(
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
-                    .windowInsetsPadding(WindowInsets.navigationBars)
             ) {
                 Text(
                     text = it.title,
@@ -248,6 +248,8 @@ fun ArticleView(
                     modifier = Modifier.padding(16.dp),
                     files = it.files
                 )
+
+                Spacer(modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars))
             }
         }
     }

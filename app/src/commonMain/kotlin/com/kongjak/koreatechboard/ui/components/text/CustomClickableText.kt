@@ -1,6 +1,11 @@
 package com.kongjak.koreatechboard.ui.components.text
 
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -24,6 +29,13 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 
+object CustomClickableTextDefaults {
+    val windowInsets: WindowInsets
+        @Composable
+        get() = WindowInsets.systemBars
+            .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
+}
+
 @Composable
 fun CustomClickableText(
     text: AnnotatedString,
@@ -44,6 +56,7 @@ fun CustomClickableText(
     inlineContent: Map<String, InlineTextContent> = mapOf(),
     onTextLayout: (TextLayoutResult) -> Unit = {},
     style: TextStyle = LocalTextStyle.current,
+    windowInsets: WindowInsets = CustomClickableTextDefaults.windowInsets,
     onClick: (Int) -> Unit
 ) {
     val textColor = color.takeOrElse {
@@ -64,7 +77,7 @@ fun CustomClickableText(
     SelectionContainer {
         BasicText(
             text = text,
-            modifier = modifier.then(pressIndicator),
+            modifier = modifier.windowInsetsPadding(windowInsets).then(pressIndicator),
             style = style.merge(
                 color = textColor,
                 fontSize = fontSize,

@@ -1,6 +1,7 @@
 package com.kongjak.koreatechboard.ui.main
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -121,6 +122,7 @@ fun MainScreen(
         snackbarHost = {
             SnackbarHost(hostState = snackbarHostState)
         },
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         content = { contentPadding ->
             Row(
                 modifier = Modifier

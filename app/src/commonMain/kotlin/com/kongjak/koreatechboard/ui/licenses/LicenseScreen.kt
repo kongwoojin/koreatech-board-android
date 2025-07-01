@@ -35,7 +35,7 @@ fun LicenseScreen() {
     AutoLinkText(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(horizontal = 16.dp)
             .verticalScroll(rememberScrollState()),
         text = bytes.decodeToString(),
         autoLinkType = arrayOf(AutoLinkType.WEB),
