@@ -37,7 +37,7 @@ permissions = "0.30.1"
 retrofit = "2.9.0"
 room = "2.6.1"
 webkit = "1.11.0"
-zoomable = "1.6.1"
+zoomable = "1.6.2"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "permissions" }
