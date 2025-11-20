@@ -1,7 +1,7 @@
 [versions]
-android-compileSdk = "35"
+android-compileSdk = "36"
 android-minSdk = "25"
-android-targetSdk = "35"
+android-targetSdk = "36"
 project-version-code = "1"
 project-version-name = "1.0.0"
 kotlin-compiler-extension = "1.5.13"
