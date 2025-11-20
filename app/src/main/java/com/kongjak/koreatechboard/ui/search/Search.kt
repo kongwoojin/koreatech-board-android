@@ -28,9 +28,9 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.kongjak.koreatechboard.R
 import com.kongjak.koreatechboard.ui.board.BoardError
 import com.kongjak.koreatechboard.ui.components.BoardItem
+import java.util.UUID
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
-import java.util.UUID
 
 @Composable
 fun SearchScreen(

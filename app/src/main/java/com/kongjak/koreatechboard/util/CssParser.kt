@@ -167,7 +167,7 @@ fun parseSpanStyle(css: String?, isDarkMode: Boolean): SpanStyle {
         when (key) {
             "color" -> {
                 /*
-                * If the background color is set, don't parse color.
+                 * If the background color is set, don't parse color.
                  */
                 if (!hasBackgroundColor) {
                     color = parseColor(value, isDarkMode)

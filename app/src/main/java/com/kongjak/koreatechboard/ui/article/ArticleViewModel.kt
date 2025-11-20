@@ -5,12 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.kongjak.koreatechboard.R
 import com.kongjak.koreatechboard.domain.usecase.api.GetArticleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import org.orbitmvi.orbit.ContainerHost
-import org.orbitmvi.orbit.viewmodel.container
 import java.net.UnknownHostException
 import java.util.UUID
 import javax.inject.Inject
+import kotlinx.coroutines.launch
+import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.viewmodel.container
 
 @HiltViewModel
 class ArticleViewModel @Inject constructor(

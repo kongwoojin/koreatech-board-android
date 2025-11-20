@@ -9,13 +9,13 @@ import com.kongjak.koreatechboard.domain.usecase.settings.department.GetUserDepa
 import com.kongjak.koreatechboard.ui.settings.deptList
 import com.kongjak.koreatechboard.util.routes.Department
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.UUID
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.viewmodel.container
-import java.util.UUID
-import javax.inject.Inject
 
 @HiltViewModel
 class NoticeViewModel @Inject constructor(

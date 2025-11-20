@@ -3,9 +3,9 @@ package com.kongjak.koreatechboard.util
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
+import javax.inject.Inject
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
-import javax.inject.Inject
 
 class NetworkUtil @Inject constructor(context: Context) {
     private val connectivityManager = context.getSystemService(ConnectivityManager::class.java)

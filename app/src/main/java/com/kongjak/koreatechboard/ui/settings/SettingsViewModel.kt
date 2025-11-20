@@ -24,12 +24,12 @@ import com.kongjak.koreatechboard.domain.usecase.settings.theme.SetDarkThemeUseC
 import com.kongjak.koreatechboard.domain.usecase.settings.theme.SetDynamicThemeUseCase
 import com.kongjak.koreatechboard.util.isDebug
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.viewmodel.container
-import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(

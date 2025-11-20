@@ -2,9 +2,9 @@ package com.kongjak.koreatechboard
 
 import android.util.Log
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
+import timber.log.Timber
 
 @Singleton
 class CrashlyticsTree : Timber.Tree() {

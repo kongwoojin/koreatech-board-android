@@ -13,11 +13,11 @@ import com.kongjak.koreatechboard.domain.usecase.settings.subscribe.SetSchoolNot
 import com.kongjak.koreatechboard.domain.usecase.settings.theme.GetDarkThemeUseCase
 import com.kongjak.koreatechboard.domain.usecase.settings.theme.GetDynamicThemeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.viewmodel.container
-import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(

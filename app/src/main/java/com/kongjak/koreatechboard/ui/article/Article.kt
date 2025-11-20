@@ -42,9 +42,9 @@ import com.kongjak.koreatechboard.ui.components.text.FileText
 import com.kongjak.koreatechboard.ui.theme.articleSubText
 import com.kongjak.koreatechboard.ui.theme.articleTitle
 import com.kongjak.koreatechboard.util.rememberHtmlState
+import java.util.UUID
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
-import java.util.UUID
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -155,7 +155,7 @@ fun ArticleView(
                 /*
                      If baseUrl is https://koreatech.ac.kr, replace it with https://www.koreatech.ac.kr
                      Because, if baseUrl is https://koreatech.ac.kr, okhttp will throw CLEARTEXT communication error
-                     */
+                 */
                 if (baseUrl.contains("https://koreatech.ac.kr")) {
                     baseUrl = "https://www.koreatech.ac.kr"
                 }

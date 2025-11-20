@@ -46,9 +46,9 @@ import com.kongjak.koreatechboard.ui.components.BoardItem
 import com.kongjak.koreatechboard.ui.settings.deptList
 import com.kongjak.koreatechboard.util.routes.BoardItem
 import com.kongjak.koreatechboard.util.routes.Department
+import java.util.UUID
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
-import java.util.UUID
 
 @ExperimentalMaterial3Api
 @Composable

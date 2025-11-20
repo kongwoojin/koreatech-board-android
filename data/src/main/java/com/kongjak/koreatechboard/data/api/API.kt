@@ -2,10 +2,10 @@ package com.kongjak.koreatechboard.data.api
 
 import com.kongjak.koreatechboard.data.model.ArticleResponse
 import com.kongjak.koreatechboard.data.model.BoardResponse
+import java.util.UUID
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.util.UUID
 
 interface API {
     @GET(APIConstants.V3.BOARD)

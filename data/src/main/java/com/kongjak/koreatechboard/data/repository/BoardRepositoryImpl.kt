@@ -11,8 +11,8 @@ import com.kongjak.koreatechboard.data.paging.SearchTitlePagingSource
 import com.kongjak.koreatechboard.domain.model.Board
 import com.kongjak.koreatechboard.domain.model.BoardData
 import com.kongjak.koreatechboard.domain.repository.BoardRepository
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
 class BoardRepositoryImpl @Inject constructor(private val boardRemoteDataSource: BoardRemoteDataSource, private val api: API) :
     BoardRepository {

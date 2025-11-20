@@ -61,12 +61,12 @@ import com.kongjak.koreatechboard.ui.components.ANNOTATION_PHONE_NUMBER_PREFIX
 import com.kongjak.koreatechboard.ui.components.ANNOTATION_URL_PREFIX
 import com.kongjak.koreatechboard.ui.components.appendNewLine
 import com.kongjak.koreatechboard.ui.theme.koreatechColorPalette
+import kotlin.random.Random
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.kobjects.ktxml.api.EventType
 import org.kobjects.ktxml.api.XmlPullParserException
 import org.kobjects.ktxml.mini.MiniXmlPullParser
-import kotlin.random.Random
 
 @Immutable
 class HtmlState internal constructor(
@@ -184,10 +184,10 @@ fun parseHtml(
                                 parser.getAttributeValue("", "style")?.let { style ->
                                     webViewHtml.append(
                                         "<span style=\"${
-                                        parseRawStyle(
-                                            style,
-                                            isDarkTheme
-                                        )
+                                            parseRawStyle(
+                                                style,
+                                                isDarkTheme
+                                            )
                                         }\">"
                                     )
                                 } ?: {
@@ -340,8 +340,8 @@ fun parseHtml(
 
                             webViewHtml.append(
                                 "<table ${
-                                attributeMap.map { (key, value) -> "$key=\"$value\"" }
-                                    .joinToString(" ")
+                                    attributeMap.map { (key, value) -> "$key=\"$value\"" }
+                                        .joinToString(" ")
                                 }>"
                             )
                         }
@@ -360,8 +360,8 @@ fun parseHtml(
 
                             webViewHtml.append(
                                 "<tr ${
-                                attributeMap.map { (key, value) -> "$key=\"$value\"" }
-                                    .joinToString(" ")
+                                    attributeMap.map { (key, value) -> "$key=\"$value\"" }
+                                        .joinToString(" ")
                                 }>"
                             )
                         }
@@ -380,8 +380,8 @@ fun parseHtml(
 
                             webViewHtml.append(
                                 "<td ${
-                                attributeMap.map { (key, value) -> "$key=\"$value\"" }
-                                    .joinToString(" ")
+                                    attributeMap.map { (key, value) -> "$key=\"$value\"" }
+                                        .joinToString(" ")
                                 }>"
                             )
                         }
@@ -400,8 +400,8 @@ fun parseHtml(
 
                             webViewHtml.append(
                                 "<th ${
-                                attributeMap.map { (key, value) -> "$key=\"$value\"" }
-                                    .joinToString(" ")
+                                    attributeMap.map { (key, value) -> "$key=\"$value\"" }
+                                        .joinToString(" ")
                                 }>"
                             )
                         }
@@ -420,8 +420,8 @@ fun parseHtml(
 
                             webViewHtml.append(
                                 "<colgroup ${
-                                attributeMap.map { (key, value) -> "$key=\"$value\"" }
-                                    .joinToString(" ")
+                                    attributeMap.map { (key, value) -> "$key=\"$value\"" }
+                                        .joinToString(" ")
                                 }>"
                             )
                         }
@@ -440,8 +440,8 @@ fun parseHtml(
 
                             webViewHtml.append(
                                 "<col ${
-                                attributeMap.map { (key, value) -> "$key=\"$value\"" }
-                                    .joinToString(" ")
+                                    attributeMap.map { (key, value) -> "$key=\"$value\"" }
+                                        .joinToString(" ")
                                 }>"
                             )
                         }

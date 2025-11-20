@@ -1,8 +1,8 @@
 package com.kongjak.koreatechboard.domain.repository
 
 import com.kongjak.koreatechboard.domain.model.LocalArticle
-import kotlinx.coroutines.flow.Flow
 import java.util.UUID
+import kotlinx.coroutines.flow.Flow
 
 interface DatabaseRepository {
     suspend fun getArticleList(vararg departments: String): Flow<List<LocalArticle>>
