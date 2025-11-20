@@ -36,6 +36,7 @@ orbit = "7.0.1"
 permissions = "0.30.1"
 retrofit = "2.9.0"
 room = "2.6.1"
+timber = "5.0.1"
 webkit = "1.11.0"
 zoomable = "1.6.1"
 
@@ -88,6 +89,7 @@ orbit-core = { module = "org.orbit-mvi:orbit-core", version.ref = "orbit" }
 orbit-viewmodel = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orbit" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 compose-junit = { module = "androidx.compose.ui:ui-test-junit4" }
 esspresso = { module = "androidx.test.espresso:espresso-core", version.ref = "esspresso" }

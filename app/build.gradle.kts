@@ -100,6 +100,8 @@ dependencies {
 
     implementation(libs.ktxml)
 
+    implementation(libs.timber)
+
     implementation(libs.zoomable)
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
