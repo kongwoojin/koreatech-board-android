@@ -17,8 +17,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
-import androidx.compose.material3.pulltorefresh.PullToRefreshDefaults
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,7 +27,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -62,63 +60,49 @@ fun ArticleScreen(
         articleViewModel.handleSideEffect(it) { stringId -> (context.getString(stringId)) }
     }
     val uiState by articleViewModel.collectAsState()
-
-    val isLoading = uiState.isLoading
-
     val pullToRefreshState = rememberPullToRefreshState()
-
-    if (pullToRefreshState.isRefreshing) {
-        LaunchedEffect(true) {
-            articleViewModel.getArticleData(department, uuid)
-        }
-    }
-
-    LaunchedEffect(key1 = isLoading) {
-        if (isLoading) return@LaunchedEffect
-        pullToRefreshState.endRefresh()
-    }
-
     val data = uiState.article
 
-    LaunchedEffect(key1 = Unit) {
-        pullToRefreshState.startRefresh()
+    LaunchedEffect(Unit) {
+        articleViewModel.getArticleData(department, uuid)
     }
 
     Box(
         contentAlignment = Alignment.TopCenter,
-        modifier = Modifier.nestedScroll(pullToRefreshState.nestedScrollConnection).fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
-        with(uiState) {
-            when {
-                isLoaded && isSuccess -> {
-                    ArticleView(
-                        data = data,
-                        isDarkTheme = isDarkTheme,
-                        setExternalLink = setExternalLink
-                    )
-                }
+        PullToRefreshBox(
+            modifier = Modifier.align(Alignment.TopCenter),
+            state = pullToRefreshState,
+            onRefresh = {
+                articleViewModel.getArticleData(department, uuid)
+            },
+            isRefreshing = uiState.isLoading
+        ) {
+            with(uiState) {
+                when {
+                    isLoaded && isSuccess -> {
+                        ArticleView(
+                            data = data,
+                            isDarkTheme = isDarkTheme,
+                            setExternalLink = setExternalLink
+                        )
+                    }
 
-                isLoaded && !isSuccess -> {
-                    Column(
-                        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(text = uiState.error)
+                    isLoaded && !isSuccess -> {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .verticalScroll(rememberScrollState()),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(text = uiState.error)
+                        }
                     }
                 }
             }
         }
-        PullToRefreshContainer(
-            modifier = Modifier.align(Alignment.TopCenter),
-            state = pullToRefreshState,
-            indicator = { pullRefreshState ->
-                PullToRefreshDefaults.Indicator(
-                    state = pullRefreshState,
-                    color = MaterialTheme.colorScheme.primary
-                )
-            }
-        )
     }
 }
 

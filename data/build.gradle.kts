@@ -2,7 +2,6 @@
 plugins {
     alias(libs.plugins.koreatechboard.library)
     alias(libs.plugins.koreatechboard.hilt)
-    alias(libs.plugins.koreatechboard.firebase)
     alias(libs.plugins.ktlint)
 }
 
@@ -22,7 +21,7 @@ android {
             )
         }
         getByName("debug") {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",

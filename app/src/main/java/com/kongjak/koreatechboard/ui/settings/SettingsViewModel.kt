@@ -3,8 +3,8 @@ package com.kongjak.koreatechboard.ui.settings
 import android.os.Build
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.messaging.ktx.messaging
+import com.google.firebase.Firebase
+import com.google.firebase.messaging.messaging
 import com.kongjak.koreatechboard.constant.FCM_TOPIC_DORM
 import com.kongjak.koreatechboard.constant.FCM_TOPIC_SCHOOL
 import com.kongjak.koreatechboard.domain.usecase.database.DeleteAllNewNoticesUseCase
@@ -28,9 +28,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
-import org.orbitmvi.orbit.syntax.simple.intent
-import org.orbitmvi.orbit.syntax.simple.postSideEffect
-import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 

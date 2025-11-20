@@ -1,9 +1,9 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
-val localStoreFile: String = gradleLocalProperties(rootDir).getProperty("localStoreFile")
-val localStorePassword: String = gradleLocalProperties(rootDir).getProperty("localStorePassword")
-val localKeyAlias: String = gradleLocalProperties(rootDir).getProperty("localKeyAlias")
-val localKeyPassword: String = gradleLocalProperties(rootDir).getProperty("localKeyPassword")
+val localStoreFile: String = gradleLocalProperties(rootDir, providers).getProperty("localStoreFile")
+val localStorePassword: String = gradleLocalProperties(rootDir, providers).getProperty("localStorePassword")
+val localKeyAlias: String = gradleLocalProperties(rootDir, providers).getProperty("localKeyAlias")
+val localKeyPassword: String = gradleLocalProperties(rootDir, providers).getProperty("localKeyPassword")
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.koreatechboard.firebase)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.licenses)
     kotlin("plugin.parcelize")
 }

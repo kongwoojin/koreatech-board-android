@@ -28,15 +28,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
-import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
-import androidx.compose.material3.pulltorefresh.PullToRefreshDefaults
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -51,7 +49,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Gray
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -205,26 +202,6 @@ fun BoardContent(
     val uiState by boardViewModel.collectAsState()
     val lazyPostList = uiState.boardItem.collectAsLazyPagingItems()
 
-    if (pullToRefreshState.isRefreshing) {
-        LaunchedEffect(true) {
-            if (uiState.isInitialized) {
-                lazyPostList.refresh()
-            } else {
-                boardViewModel.getAPI(department.name, department.boards[page].board)
-            }
-        }
-    }
-
-    LaunchedEffect(key1 = department.name, key2 = department.boards[page].board) {
-        pullToRefreshState.startRefresh()
-    }
-
-    LaunchedEffect(key1 = lazyPostList.loadState.refresh, key2 = pullToRefreshState.isRefreshing) {
-        if (lazyPostList.loadState.refresh is LoadState.NotLoading || lazyPostList.loadState.refresh is LoadState.Error) {
-            pullToRefreshState.endRefresh()
-        }
-    }
-
     val context = LocalContext.current
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -254,112 +231,112 @@ fun BoardContent(
             }
 
             Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .nestedScroll(pullToRefreshState.nestedScrollConnection)
+                modifier = Modifier.fillMaxSize()
             ) {
-                if ((lazyPostList.loadState.refresh is LoadState.NotLoading) && lazyPostList.itemCount == 0) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(text = stringResource(id = R.string.error_no_article))
-                    }
-                } else {
-                    LazyColumn(
-                        contentPadding = PaddingValues(
-                            top = contentPadding.calculateTopPadding(),
-                            bottom = (64 + 16).dp + contentPadding.calculateBottomPadding(),
-                            start = contentPadding.calculateStartPadding(LayoutDirection.Ltr),
-                            end = contentPadding.calculateEndPadding(LayoutDirection.Ltr)
-                        ),
-                        modifier = Modifier
-                            .fillMaxSize(),
-                        verticalArrangement = Arrangement.Top,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        items(lazyPostList.itemCount) { index ->
-                            val boardItem = lazyPostList[index]
-                            boardItem?.let {
-                                BoardItem(
-                                    modifier = Modifier
-                                        .selectable(
-                                            indication = null,
-                                            interactionSource = remember { MutableInteractionSource() },
-                                            selected = false,
-                                            onClick = {
-                                                onArticleClick(it.uuid, department.name)
-                                            }
-                                        ),
-                                    title = it.title,
-                                    writer = it.writer,
-                                    date = it.writeDate
-                                )
-                                HorizontalDivider(
-                                    modifier = Modifier.padding(horizontal = 16.dp),
-                                    thickness = 0.5.dp,
-                                    color = Gray
-                                )
-                            }
+                PullToRefreshBox(
+                    modifier = Modifier.align(Alignment.TopCenter),
+                    state = pullToRefreshState,
+                    isRefreshing = uiState.isLoading,
+                    onRefresh = {
+                        if (uiState.isInitialized) {
+                            lazyPostList.refresh()
+                        } else {
+                            boardViewModel.getAPI(department.name, department.boards[page].board)
                         }
+                    }
+                ) {
+                    if ((lazyPostList.loadState.refresh is LoadState.NotLoading) && lazyPostList.itemCount == 0) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(text = stringResource(id = R.string.error_no_article))
+                        }
+                    } else {
+                        LazyColumn(
+                            contentPadding = PaddingValues(
+                                top = contentPadding.calculateTopPadding(),
+                                bottom = (64 + 16).dp + contentPadding.calculateBottomPadding(),
+                                start = contentPadding.calculateStartPadding(LayoutDirection.Ltr),
+                                end = contentPadding.calculateEndPadding(LayoutDirection.Ltr)
+                            ),
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            verticalArrangement = Arrangement.Top,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            items(lazyPostList.itemCount) { index ->
+                                val boardItem = lazyPostList[index]
+                                boardItem?.let {
+                                    BoardItem(
+                                        modifier = Modifier
+                                            .selectable(
+                                                indication = null,
+                                                interactionSource = remember { MutableInteractionSource() },
+                                                selected = false,
+                                                onClick = {
+                                                    onArticleClick(it.uuid, department.name)
+                                                }
+                                            ),
+                                        title = it.title,
+                                        writer = it.writer,
+                                        date = it.writeDate
+                                    )
+                                    HorizontalDivider(
+                                        modifier = Modifier.padding(horizontal = 16.dp),
+                                        thickness = 0.5.dp,
+                                        color = Gray
+                                    )
+                                }
+                            }
 
-                        lazyPostList.apply {
-                            when (isNetworkConnected) {
-                                true -> {
-                                    when {
-                                        loadState.refresh is LoadState.Error ->
-                                            (loadState.refresh as LoadState.Error).error.let {
-                                                val errorMessage = when (it) {
-                                                    is java.net.SocketTimeoutException,
-                                                    is UnknownHostException -> {
-                                                        context.getString(R.string.error_timeout)
+                            lazyPostList.apply {
+                                when (isNetworkConnected) {
+                                    true -> {
+                                        when {
+                                            loadState.refresh is LoadState.Error ->
+                                                (loadState.refresh as LoadState.Error).error.let {
+                                                    val errorMessage = when (it) {
+                                                        is java.net.SocketTimeoutException,
+                                                        is UnknownHostException -> {
+                                                            context.getString(R.string.error_timeout)
+                                                        }
+
+                                                        else -> (loadState.refresh as LoadState.Error).error.message
+                                                            ?: context.getString(R.string.error_unknown)
                                                     }
-
-                                                    else -> (loadState.refresh as LoadState.Error).error.message
-                                                        ?: context.getString(R.string.error_unknown)
-                                                }
-                                                item {
-                                                    BoardError(errorMessage)
-                                                }
-                                            }
-
-                                        loadState.append is LoadState.Error -> {
-                                            (loadState.append as LoadState.Error).error.let {
-                                                val errorMessage = when (it) {
-                                                    is java.net.SocketTimeoutException,
-                                                    is UnknownHostException -> {
-                                                        context.getString(R.string.error_timeout)
+                                                    item {
+                                                        BoardError(errorMessage)
                                                     }
-
-                                                    else -> (loadState.refresh as LoadState.Error).error.message
-                                                        ?: context.getString(R.string.error_unknown)
                                                 }
-                                                item {
-                                                    BoardError(errorMessage)
+
+                                            loadState.append is LoadState.Error -> {
+                                                (loadState.append as LoadState.Error).error.let {
+                                                    val errorMessage = when (it) {
+                                                        is java.net.SocketTimeoutException,
+                                                        is UnknownHostException -> {
+                                                            context.getString(R.string.error_timeout)
+                                                        }
+
+                                                        else -> (loadState.refresh as LoadState.Error).error.message
+                                                            ?: context.getString(R.string.error_unknown)
+                                                    }
+                                                    item {
+                                                        BoardError(errorMessage)
+                                                    }
                                                 }
                                             }
                                         }
                                     }
-                                }
 
-                                false -> item { NetworkUnavailable() }
+                                    false -> item { NetworkUnavailable() }
+                                }
                             }
                         }
                     }
                 }
-
-                PullToRefreshContainer(
-                    modifier = Modifier.align(Alignment.TopCenter),
-                    state = pullToRefreshState,
-                    indicator = { pullRefreshState ->
-                        PullToRefreshDefaults.Indicator(
-                            state = pullRefreshState,
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                    }
-                )
             }
         }
     )

@@ -35,7 +35,6 @@ fun SwitchPreference(
 
     BasicPreference(
         modifier = modifier
-            .indication(interactionSource, rememberRipple())
             .onGloballyPositioned {
                 componentWidth = it.size.width
                 componentHeight = it.size.height
@@ -85,7 +84,6 @@ fun SwitchPreference(
 
     BasicPreference(
         modifier = modifier
-            .indication(interactionSource, rememberRipple())
             .onGloballyPositioned {
                 componentWidth = it.size.width
                 componentHeight = it.size.height
@@ -136,7 +134,6 @@ fun SwitchPreference(
 
     BasicPreference(
         modifier = modifier
-            .indication(interactionSource, rememberRipple())
             .onGloballyPositioned {
                 componentWidth = it.size.width
                 componentHeight = it.size.height
@@ -188,7 +185,6 @@ fun SwitchPreference(
 
     BasicPreference(
         modifier = modifier
-            .indication(interactionSource, rememberRipple())
             .onGloballyPositioned {
                 componentWidth = it.size.width
                 componentHeight = it.size.height

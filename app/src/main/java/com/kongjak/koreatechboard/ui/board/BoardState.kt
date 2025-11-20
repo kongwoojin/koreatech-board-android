@@ -9,5 +9,6 @@ data class BoardState(
     val department: String = "",
     val board: String = "",
     val boardItem: Flow<PagingData<BoardData>> = emptyFlow(),
-    val isInitialized: Boolean = false
+    val isInitialized: Boolean = false,
+    val isLoading: Boolean = false
 )
