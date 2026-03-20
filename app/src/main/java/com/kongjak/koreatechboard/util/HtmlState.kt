@@ -111,7 +111,7 @@ fun rememberHtmlState(
             text = AnnotatedString("")
         )
     ) {
-        val parsedValue = withContext(Dispatchers.Main) {
+        val parsedValue = withContext(Dispatchers.IO) {
             parseHtml(
                 baseUrl = baseUrl,
                 parser = parser,
