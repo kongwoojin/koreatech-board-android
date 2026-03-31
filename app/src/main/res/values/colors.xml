@@ -1,17 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="md_theme_primary">#4C5C92</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_primaryContainer">#DCE1FF</color>
+    <color name="md_theme_onPrimaryContainer">#02174B</color>
+    <color name="md_theme_secondary">#595E72</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_secondaryContainer">#DDE1F9</color>
+    <color name="md_theme_onSecondaryContainer">#161B2C</color>
+    <color name="md_theme_tertiary">#745470</color>
+    <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="md_theme_tertiaryContainer">#FFD7F6</color>
+    <color name="md_theme_onTertiaryContainer">#2C122A</color>
+    <color name="md_theme_error">#BA1A1A</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_errorContainer">#FFDAD6</color>
+    <color name="md_theme_onErrorContainer">#410002</color>
+    <color name="md_theme_background">#FAF8FF</color>
+    <color name="md_theme_onBackground">#1A1B21</color>
+    <color name="md_theme_surface">#FAF8FF</color>
+    <color name="md_theme_onSurface">#1A1B21</color>
+    <color name="md_theme_surfaceVariant">#E2E1EC</color>
+    <color name="md_theme_onSurfaceVariant">#45464F</color>
+    <color name="md_theme_outline">#767680</color>
+    <color name="md_theme_outlineVariant">#C6C6D0</color>
+    <color name="md_theme_scrim">#000000</color>
+    <color name="md_theme_inverseSurface">#2F3036</color>
+    <color name="md_theme_inverseOnSurface">#F1F0F7</color>
+    <color name="md_theme_inversePrimary">#B5C4FF</color>
+    <color name="md_theme_primaryFixed">#DCE1FF</color>
+    <color name="md_theme_onPrimaryFixed">#02174B</color>
+    <color name="md_theme_primaryFixedDim">#B5C4FF</color>
+    <color name="md_theme_onPrimaryFixedVariant">#344479</color>
+    <color name="md_theme_secondaryFixed">#DDE1F9</color>
+    <color name="md_theme_onSecondaryFixed">#161B2C</color>
+    <color name="md_theme_secondaryFixedDim">#C1C5DD</color>
+    <color name="md_theme_onSecondaryFixedVariant">#414659</color>
+    <color name="md_theme_tertiaryFixed">#FFD7F6</color>
+    <color name="md_theme_onTertiaryFixed">#2C122A</color>
+    <color name="md_theme_tertiaryFixedDim">#E3BADB</color>
+    <color name="md_theme_onTertiaryFixedVariant">#5B3D57</color>
+    <color name="md_theme_surfaceDim">#DAD9E0</color>
+    <color name="md_theme_surfaceBright">#FAF8FF</color>
+    <color name="md_theme_surfaceContainerLowest">#FFFFFF</color>
+    <color name="md_theme_surfaceContainerLow">#F4F3FA</color>
+    <color name="md_theme_surfaceContainer">#EEEDF4</color>
+    <color name="md_theme_surfaceContainerHigh">#E9E7EF</color>
+    <color name="md_theme_surfaceContainerHighest">#E3E1E9</color>
 
     <color name="koreatech_main_1">#FF7F00</color>
-    <color name="koreatech_main_2">#183072</color>
-
     <color name="koreatech_sub_1">#22449C</color>
-    <color name="koreatech_sub_2">#B3B3AA</color>
-    <color name="koreatech_sub_3">#4C4C4C</color>
 </resources>

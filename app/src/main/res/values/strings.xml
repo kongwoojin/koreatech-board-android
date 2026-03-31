@@ -1,46 +1,132 @@
 <resources>
     <string name="app_name">KOREATECH Board</string>
-    <string name="item_notice">Notice</string>
-    <string name="item_free_board">Free Board</string>
-    <string name="item_job_board">Job Board</string>
-    <string name="item_lecture_notice">Lecture notice</string>
-    <string name="item_scholar_board">Scholar Notice</string>
-    <string name="item_bachelor_board">Bachelor Notice</string>
-    <string name="item_covid19_board">Covid-19 Notice</string>
 
-    <string name="drawer_title_settings">Settings</string>
+    <!-- Department -->
+    <string name="department_school">KOREATECH</string>
+    <string name="department_dorm">Dormitory</string>
+    <string name="department_cse">School of Computer Science and Engineering</string>
+    <string name="department_mechanical">School of Mechanical Engineering</string>
+    <string name="department_mechatronics">School of Mechatronics Engineering</string>
+    <string name="department_ite">School of Electrical, Electronics &amp; Communication Engineering</string>
+    <string name="department_ide">School of Industrial Design Engineering</string>
+    <string name="department_arch">School of Architectural Engineering</string>
+    <string name="department_mse">School of Energy Materials</string>
+    <string name="department_ace">School of Chemical Engineering</string>
+    <string name="department_sim">School of Industrial Management</string>
 
-    <string name="drawer_item_school">KOREATECH</string>
-    <string name="drawer_item_dorm">KOREATECH Dorm</string>
-    <string name="drawer_item_cse">School of Computer Science and Engineering</string>
-    <string name="drawer_item_mechanical">School Of Mechanical Engineering</string>
-    <string name="drawer_item_mechatronics">School of Mechatronics Engineering</string>
-    <string name="drawer_item_ite">School of Electrical, Electronics &amp; Communication Engineering</string>
-    <string name="drawer_item_ide">School of Industrial Design Engineering &amp; Architectural Engineering (Design)</string>
-    <string name="drawer_item_arch">School of Industrial Design Engineering &amp; Architectural Engineering (Architectural)</string>
-    <string name="drawer_item_emc">School of Energy Materials and Chemical Engineering</string>
-    <string name="drawer_item_sim">School of Industrial Management</string>
-    <string name="drawer_item_settings">Settings</string>
+    <!-- Board -->
+    <string name="board_notice">Notice</string>
+    <string name="board_free_board">Free Board</string>
+    <string name="board_job_board">Job Board</string>
+    <string name="board_lecture_board">Lecture notice</string>
+    <string name="board_scholar_board">Scholar Notice</string>
+    <string name="board_bachelor_board">Bachelor Notice</string>
+    <string name="board_covid19_board">Covid-19 Notice</string>
+    <string name="board_pds_board">PDS Board</string>
 
-    <string name="notice">Notice</string>
-    <string name="no_more_article">No more article!</string>
+    <!-- Navigation -->
+    <string name="navigation_back">Back</string>
 
-    <string name="app_settings_header">App settings</string>
-    <string name="info_settings_header">Info</string>
+    <!-- Routes -->
+    <string name="route_home">Home</string>
+    <string name="route_board">Board</string>
+    <string name="route_settings">Settings</string>
+    <string name="route_new_notice">New notice</string>
+    <string name="route_search">Search</string>
+    <string name="route_article">Article</string>
+    <string name="route_licenses">Licenses</string>
 
-    <string name="default_board_title">Default board</string>
+    <!-- Search -->
+    <string name="search_dialog_title">Search</string>
+    <string name="search_dialog_hint">Type keyword</string>
+    <string name="search_dialog_search">Search</string>
+    <string name="search_dialog_cancel">Cancel</string>
 
-    <string name="license_title">Opensource License</string>
-    <string name="source_code_title">Source code</string>
+    <string name="search_more_letter">Type more than three letter!</string>
 
-    <string name="arrays_board_school">KOREATECH</string>
-    <string name="arrays_board_dorm">KOREATECH Dorm</string>
-    <string name="arrays_board_cse">School of Computer Science and Engineering</string>
-    <string name="arrays_board_mechanical">School Of Mechanical Engineering</string>
-    <string name="arrays_board_mechatronics">School of Mechatronics Engineering</string>
-    <string name="arrays_board_ite">School of Electrical, Electronics &amp; Communication Engineering</string>
-    <string name="arrays_board_ide">School of Industrial Design Engineering &amp; Architectural Engineering (Design)</string>
-    <string name="arrays_board_arch">School of Industrial Design Engineering &amp; Architectural Engineering (Architectural)</string>
-    <string name="arrays_board_emc">School of Energy Materials and Chemical Engineering</string>
-    <string name="arrays_board_sim">School of Industrial Management</string>
+    <string name="search_result">Search result</string>
+    <string name="search_no_result">No search result!</string>
+
+    <!-- Settings -->
+    <string name="setting_header_info">Info</string>
+    <string name="setting_header_theme">Theme</string>
+    <string name="setting_header_notification">Notification</string>
+
+    <string name="setting_user_department_title">Department</string>
+    <string name="setting_user_department_summary">Select your department</string>
+    <string name="setting_default_board_title">Default board</string>
+    <string name="setting_dynamic_theme_title">System theme</string>
+    <string name="setting_dynamic_theme_summary">Change theme based on system theme</string>
+    <string name="setting_dark_theme_title">Dark theme</string>
+    <string name="setting_dark_theme_system_default">System default</string>
+    <string name="setting_dark_theme_dark">Dark theme</string>
+    <string name="setting_dark_theme_light">Light theme</string>
+    <string name="setting_show_article_number_title">Show article number</string>
+    <string name="setting_show_article_number_summary">Show article number with title in board page</string>
+    <string name="setting_subscribe_new_notice_school">Subscribe new notices of school</string>
+    <string name="setting_subscribe_new_notice_summary_school">Receive notification when new school notice posted</string>
+    <string name="setting_subscribe_new_notice_dorm">Subscribe new notices of dormitory</string>
+    <string name="setting_subscribe_new_notice_summary_dorm">Receive notification when new dormitory notice posted</string>
+    <string name="setting_subscribe_new_notice_department">Subscribe new notices of department</string>
+    <string name="setting_subscribe_new_notice_summary_department">Receive notification when new department notice posted</string>
+    <string name="setting_delete_all_new_notices_title">Delete all new notices</string>
+    <string name="setting_delete_all_new_notices_summary">Delete all new notices received</string>
+    <string name="setting_delete_all_new_notices_confirm">Are you sure to delete all new notices?</string>
+    <string name="setting_license_title">Opensource License</string>
+    <string name="setting_source_code_title">Source Code</string>
+    <string name="setting_source_code_url" translatable="false">https://github.com/kongwoojin/koreatech-board-android</string>
+    <string name="setting_enquiry_mail_title">Send email</string>
+    <string name="setting_mail_address" translatable="false">kongjak@kongjak.com</string>
+    <string name="setting_mail_subject">Koreatech Board Enquiry</string>
+    <string name="setting_mail_text">Device: %1$s\nOS: %2$d\nEnquiry type (Bug, Feature request, ETC): \nEnquiry:</string>
+    <string name="setting_mail_app_not_found">Cannot find mail application!</string>
+
+    <!-- Error -->
+    <string name="error_minimum_message">Error occurred!</string>
+    <string name="error_show_detail">Show detail</string>
+    <string name="error_hide_detail">Hide detail</string>
+    <string name="error_server_down">Server returns %s error!\nPlease contact to server admin.</string>
+    <string name="error_retry">Retry</string>
+    <string name="error_no_article">No article!</string>
+    <string name="error_unknown">Unknown error!</string>
+    <string name="error_timeout">Cannot fetch data because network is unstable</string>
+
+    <!-- ETC -->
+    <string name="article_title" translatable="false">%s | %s</string>
+
+    <string name="network_unavailable">Can\'t connect network!</string>
+
+    <string name="open_in_browser_failed">Failed to open browser!</string>
+    <string name="firebase_token" translatable="false">Firebase token: %s</string>
+
+    <!-- Notification -->
+    <string name="school_notification_channel_id" translatable="false">1001</string>
+    <string name="dorm_notification_channel_id" translatable="false">1002</string>
+    <string name="department_notification_channel_id" translatable="false">1003</string>
+    <string name="school_notification_channel_name">School notification</string>
+    <string name="dorm_notification_channel_name">Dormitory notification</string>
+    <string name="department_notification_channel_name">Department notification</string>
+    <string name="new_notice_notification_title">New notice</string>
+    <string name="new_notice_notification_content">New notice posted on %2$s board in %1$s!</string>
+
+    <!-- Permission -->
+    <string name="permission_notification_request_title">Notification permission requested!</string>
+    <string name="permission_notification_request_content">Notification permission is needed to receive new notice!\n Press confirm to allow permission!</string>
+    <string name="permission_notification_request_rationale_content">Notification permission is needed to receive new notice!\n Press confirm to open setting and allow permission!</string>
+    <string name="permission_notification_denied">Notification permission denied!</string>
+
+    <!-- Component -->
+    <string name="dialog_confirm">Confirm</string>
+    <string name="dialog_dismiss">Dismiss</string>
+
+    <!-- New Notice -->
+    <string name="no_new_notice">No new notice!</string>
+    <string name="department_and_board" translatable="false">%s | %s</string>
+
+    <!-- Content Description -->
+    <string name="content_description_back">Back</string>
+    <string name="content_description_search">Search</string>
+    <string name="content_description_open_in_browser">Open in browser</string>
+    <string name="content_description_notification">Notification</string>
+    <string name="content_description_delete">Delete</string>
 </resources>
